@@ -281,7 +281,6 @@ class Client(object):
 
             response_content = self._read_response(res)
             self.logger.debug('RES BODY: {0!s}'.format(response_content))
-            print(response_content)
             return json.loads(response_content)
 
         except compat_urllib_error.HTTPError as e:
