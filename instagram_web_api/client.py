@@ -429,8 +429,10 @@ class Client(object):
         try:
             info = self._make_request(endpoint, query={'__a': '1'})
         except ClientError as ce:
-            if ce.code != 403:
+            if ce.code != 403 && ce.code != 500:
                 raise ce
+            if  ce.code == 500:
+                print('Error 500')
             # reinit to get a fresh rhx_gis
             self.init()
             info = self._make_request(endpoint, query={'__a': '1'})
